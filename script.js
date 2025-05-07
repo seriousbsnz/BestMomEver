@@ -12,6 +12,16 @@ document.getElementById('canvas-container').appendChild( renderer.domElement );
 // Position the camera
 camera.position.set( 0, 0, 10 );
 
+// Soft ambient glow
+const ambientLight = new THREE.AmbientLight(0xB510AF, 0.6);
+scene.add(ambientLight);
+
+// Gentle point highlights
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
+
+
 // Basic render loop
 function animate() {
   requestAnimationFrame( animate );
