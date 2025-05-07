@@ -96,6 +96,28 @@ function animate() {
   requestAnimationFrame( animate );
   renderer.render( scene, camera );
 }
+
+// ——— Floating Orb ———
+const orbGeometry = new THREE.SphereGeometry(0.7, 32, 32);
+const orbMaterial = new THREE.MeshStandardMaterial({
+  color: 0x10AFB5,          // your chosen teal
+  emissive: 0x10AFB5,       // same glow color
+  emissiveIntensity: 0.6,
+});
+const orb = new THREE.Mesh(orbGeometry, orbMaterial);
+
+// position it in the scene
+orb.position.set(0, 2, -5);
+scene.add(orb);
+
+// gentle bobbing animation (±0.5 units)
+gsap.to(orb.position, {
+  y: orb.position.y + 0.5,
+  duration: 2,
+  yoyo: true,
+  repeat: -1,
+  ease: "sine.inOut",
+});
 animate();
 
 // Handle resizing
