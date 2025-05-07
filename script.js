@@ -118,6 +118,48 @@ gsap.to(orb.position, {
   repeat: -1,
   ease: "sine.inOut",
 });
+// ——— Rotating Photo Frame ———
+// Load texture
+const textureLoader = new THREE.TextureLoader();
+const photoTexture = textureLoader.load('2023-06-05(4).jpg');
+
+// Create a plane mesh
+const photoGeometry = new THREE.PlaneGeometry(3, 2);
+const photoMaterial = new THREE.MeshStandardMaterial({ map: photoTexture });
+const photoMesh = new THREE.Mesh(photoGeometry, photoMaterial);
+photoMesh.position.set(3, 0, -5);
+scene.add(photoMesh);
+
+// Continuous rotation
+gsap.to(photoMesh.rotation, {
+  y: Math.PI * 2,
+  duration: 10,
+  repeat: -1,
+  ease: 'linear'
+});
+
+// ——— Hover Logic ———
+function onMouseMove(event) {
+  // normalize mouse coords
+  const rect = renderer.domElement.getBoundingClientRect();
+  mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  const hits = raycaster.intersectObject(photoMesh);
+  
+  // show or hide the HTML overlay
+  const noteEl = document.getElementById('photo-note');
+  if (hits.length) {
+    noteEl.style.display = 'block';
+  } else {
+    noteEl.style.display = 'none';
+  }
+}
+
+// attach the hover listener
+renderer.domElement.addEventListener('mousemove', onMouseMove);
+
 animate();
 
 // Handle resizing
