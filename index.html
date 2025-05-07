@@ -6,12 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Motherverse</title>
   
-  <!-- Three.js CDN -->
-  <script src="https://unpkg.com/three@0.150.0/build/three.min.js"></script>
- 
-  <!-- GSAP CDN for animations -->
-  <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
-  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -30,5 +24,10 @@
 <div id="flower-message" class="message" style="display:none;">
   Growing with mom
 </div>
+  <!-- GSAP global build (so gsap stays global) -->
+  <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+
+  <!-- Your app as an ES module -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
