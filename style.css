@@ -9,6 +9,6 @@ html, body {
 #canvas-container {
   width: 100%;
   height: 100%;
-  background:800080 /* your choice of pastel here */;
+  background:rgb(101, 22, 169) /* your choice of pastel here */;
 }
 
