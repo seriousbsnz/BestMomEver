@@ -1,3 +1,7 @@
+import * as THREE from 'https://unpkg.com/three@0.150.0/build/three.module.js';
+
+// now THREE.Scene, THREE.Mesh, etc. will resolve correctly
+
 // script.js
 
 // Create scene, camera, renderer
